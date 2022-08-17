@@ -263,5 +263,7 @@ class BigQueryCompleter(Completer):
         self.keyword_casing = keyword_casing
 
     def get_completions(self, document: Document, complete_event: CompleteEvent) -> Iterable[Completion]:
-        while True:
-            yield "blah"
+        for word in self.keywords:
+            if word.startswith(document.get_word_before_cursor()):
+                yield word
+
